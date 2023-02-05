@@ -1,0 +1,29 @@
+# 应用名称
+spring:
+  application:
+    name: spring-boot-mp-01
+  # data source config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis_plus_example
+    username: root
+    password: 123456
+    name: default
+
+# mybatis plus config
+mybatis-plus:
+  global-config:
+    db-config:
+      # 表主键类型为自增
+      id-type: auto
+      # 逻辑删除标识字段名称
+      logic-delete-field: deleted
+      # 逻辑删除值
+      logic-delete-value: true
+      # 逻辑未删除值
+      logic-not-delete-value: false
+  # 配置项
+  configuration:
+    # 日志实现类
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
