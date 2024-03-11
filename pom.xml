@@ -50,13 +50,13 @@
     <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus-boot-starter</artifactId>
-      <version>3.5.3.1</version>
+      <version>3.5.5</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
     <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus-generator</artifactId>
-      <version>3.5.3.1</version>
+      <version>3.5.5</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
     <dependency>
@@ -64,6 +64,12 @@
       <artifactId>assertj-core</artifactId>
       <version>3.23.1</version>
       <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.github.yulichang/mybatis-plus-join-boot-starter -->
+    <dependency>
+      <groupId>com.github.yulichang</groupId>
+      <artifactId>mybatis-plus-join-boot-starter</artifactId>
+      <version>1.4.11</version>
     </dependency>
   </dependencies>
 

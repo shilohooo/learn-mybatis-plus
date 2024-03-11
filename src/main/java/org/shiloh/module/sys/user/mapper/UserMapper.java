@@ -1,9 +1,9 @@
 package org.shiloh.module.sys.user.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.github.yulichang.base.MPJBaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.shiloh.module.sys.user.entity.User;
-import org.springframework.stereotype.Repository;
 
 /**
  * 系统用户信息 Mapper
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
  * @author shiloh
  * @date 2023/2/4 16:51
  */
-@Repository
-public interface UserMapper extends BaseMapper<User> {
+@Mapper
+public interface UserMapper extends MPJBaseMapper<User> {
     /**
      * 根据 ID 查询用户年龄
      *

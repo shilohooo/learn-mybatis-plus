@@ -16,7 +16,7 @@ import static com.baomidou.mybatisplus.annotation.IdType.AUTO;
  * @date 2023/2/4 16:50
  */
 @Data
-@TableName("sys_user")
+@TableName("tb_user")
 public class User {
     /**
      * ID
