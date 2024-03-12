@@ -1,4 +1,4 @@
-package org.shiloh.module.mpj.base;
+package org.shiloh.module.mpj.mapper;
 
 import com.github.yulichang.toolkit.JoinWrappers;
 import com.github.yulichang.wrapper.DeleteJoinWrapper;
