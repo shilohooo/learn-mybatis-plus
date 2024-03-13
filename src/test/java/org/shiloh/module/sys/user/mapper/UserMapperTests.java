@@ -64,7 +64,7 @@ public class UserMapperTests {
      */
     @Test
     public void testDeleteUserById() {
-        final int effectedRows = this.userMapper.deleteById(2);
+        final int effectedRows = this.userMapper.deleteById(6);
         assertThat(effectedRows).isEqualTo(1);
     }
 
@@ -77,7 +77,7 @@ public class UserMapperTests {
     @Test
     public void testUpdateUser() {
         final User user = new User();
-        user.setId(2L);
+        user.setId(5L);
         user.setUsername("Robot01");
         // 更新时会跳过值为 null 的字段
         final int effectRows = this.userMapper.updateById(user);
@@ -95,21 +95,21 @@ public class UserMapperTests {
     @Test
     public void testSelectUserByQueryWrapper() {
         // 查询性别为：男的用户信息
-        assertThat(this.userMapper.selectList(new QueryWrapper<User>().eq("sex", "男")))
+        assertThat(this.userMapper.selectList(new QueryWrapper<User>().eq("Sex", "男")))
                 .isNotEmpty();
         // 查询年龄在 20 - 30 之间的用户信息
-        assertThat(this.userMapper.selectList(new QueryWrapper<User>().between("age", 20, 30)))
+        assertThat(this.userMapper.selectList(new QueryWrapper<User>().between("Age", 20, 30)))
                 .isNotEmpty();
         // 查询用户名包含字母 "o" 的用户信息
-        assertThat(this.userMapper.selectList(new QueryWrapper<User>().like("username", "o")))
+        assertThat(this.userMapper.selectList(new QueryWrapper<User>().like("Username", "o")))
                 .isNotEmpty();
         // 查询性别为 "男" / "女" 的用户信息
         assertThat(
                 this.userMapper.selectList(
                         new QueryWrapper<User>()
-                                .eq("sex", "男")
+                                .eq("Sex", "男")
                                 .or()
-                                .eq("sex", "女")
+                                .eq("Sex", "女")
                 )
         )
                 .isNotEmpty();
@@ -117,13 +117,13 @@ public class UserMapperTests {
         assertThat(
                 this.userMapper.selectList(
                         new QueryWrapper<User>()
-                                .eq("sex", "男")
-                                .ge("age", 20)
+                                .eq("Sex", "男")
+                                .ge("Age", 20)
                 )
         )
                 .isNotEmpty();
         // 查询所有用户信息，按照年龄降序排序
-        assertThat(this.userMapper.selectList(new QueryWrapper<User>().orderByDesc("age")))
+        assertThat(this.userMapper.selectList(new QueryWrapper<User>().orderByDesc("Age")))
                 .isNotEmpty();
     }
 
@@ -182,7 +182,7 @@ public class UserMapperTests {
         final User user = new User();
         user.setId(5L);
         user.setUsername("Bruce Lee");
-        assertThat(this.userMapper.update(user, new QueryWrapper<User>().eq("id", user.getId())))
+        assertThat(this.userMapper.update(user, new QueryWrapper<User>().eq("Id", user.getId())))
                 .isEqualTo(1);
     }
 
@@ -201,8 +201,8 @@ public class UserMapperTests {
                         // 第一个参数为 entity，如果传 null 则代表使用第二个参数 updateWrapper 来执行更新操作
                         null,
                         new UpdateWrapper<User>()
-                                .set("age", 30)
-                                .eq("id", 5)
+                                .set("Age", 30)
+                                .eq("Id", 5)
                 )
         )
                 .isEqualTo(1);
@@ -220,8 +220,8 @@ public class UserMapperTests {
                 this.userMapper.update(
                         null,
                         new LambdaUpdateWrapper<User>()
-                                .set(User::getSex, "未知")
-                                .eq(User::getId, "5")
+                                .set(User::getSex, "女")
+                                .eq(User::getId, 5L)
                 )
         )
                 .isEqualTo(1);
@@ -237,7 +237,7 @@ public class UserMapperTests {
     public void testSelectUserByPage() {
         // limit index, rows
         // index = (index - 1) * rows
-        final Page<User> page = new Page<>(2, 3);
+        final Page<User> page = new Page<>(1L, 3L);
         this.userMapper.selectPage(page, null);
         assertThat(page).isNotNull();
         // 总页数
@@ -247,9 +247,9 @@ public class UserMapperTests {
         // 分页数据列表
         assertThat(page.getRecords()).isNotEmpty();
         // 是否还有上一页
-        assertThat(page.hasPrevious()).isTrue();
+        assertThat(page.hasPrevious()).isFalse();
         // 是否还有下一页
-        assertThat(page.hasNext()).isFalse();
+        assertThat(page.hasNext()).isTrue();
     }
 
     /**

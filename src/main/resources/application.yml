@@ -4,10 +4,10 @@ spring:
     name: spring-boot-mp-01
   # data source config
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:13306/mybatis_plus_example
-    username: root
-    password: 123456
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://127.0.0.1:1433;databaseName=MyBatisPlusExample;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: Lxl1998!
     name: default
 
 # mybatis plus config
@@ -18,10 +18,16 @@ mybatis-plus:
       id-type: auto
       # 逻辑删除标识字段名称
       logic-delete-field: deleted
-      # 逻辑删除值
-      logic-delete-value: true
-      # 逻辑未删除值
-      logic-not-delete-value: false
+      # 逻辑删除值，数据库类型为 sql server，逻辑删除字段类型为 bit 时，不能配置为 true
+      #  因为生成的 SQL 为 where Deleted = true，此时会报错：Invalid column name 'true'
+      logic-delete-value: 1
+      # logic-delete-value: true
+      # 逻辑未删除值，数据库类型为 sql server 时，逻辑删除字段类型为 bit 时，不能配置为 false
+      # 因为生成的 SQL 为 where Deleted = false，此时会报错：Invalid column name 'false'
+      logic-not-delete-value: 0
+      # logic-not-delete-value: false
+      # 数据库对象分组
+      schema: System
   # 配置项
   configuration:
     # 日志实现类

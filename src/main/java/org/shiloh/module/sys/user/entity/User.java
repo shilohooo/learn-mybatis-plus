@@ -16,7 +16,7 @@ import static com.baomidou.mybatisplus.annotation.IdType.AUTO;
  * @date 2023/2/4 16:50
  */
 @Data
-@TableName("tb_user")
+@TableName("UserInfo")
 public class User {
     /**
      * ID
@@ -24,29 +24,32 @@ public class User {
      *
      * @see com.baomidou.mybatisplus.annotation.IdType
      */
-    @TableId(value = "id", type = AUTO)
+    @TableId(value = "Id", type = AUTO)
     private Long id;
 
     /**
      * 用户名
      * {@link TableField} 字段注解（非主键），value = 数据库表字段名称
      */
-    @TableField("username")
+    @TableField("Username")
     private String username;
 
     /**
      * 性别：未知 / 男 / 女
      */
+    @TableField("Sex")
     private String sex;
 
     /**
      * 年龄
      */
+    @TableField("Age")
     private Integer age;
 
     /**
      * 电子邮箱
      */
+    @TableField("Email")
     private String email;
 
     /**
@@ -57,5 +60,6 @@ public class User {
      * {@code true} = 逻辑删除，{@code false} = 逻辑未删除
      */
     @TableLogic
+    @TableField("Deleted")
     private Boolean deleted;
 }
